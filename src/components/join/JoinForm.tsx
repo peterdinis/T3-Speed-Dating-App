@@ -27,6 +27,9 @@ const JoinForm: React.FC = () => {
           <button className="w-full bg-gradient-to-b from-blue-700 to-gray-900 p-2 font-medium uppercase text-white md:p-4">
             Join
           </button>
+          <div className="mt-4">
+            How this app work
+          </div>
         </form>
       </div>
     </div>
