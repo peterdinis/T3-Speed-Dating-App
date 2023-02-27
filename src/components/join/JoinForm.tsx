@@ -2,6 +2,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import InfoIcon from "@mui/icons-material/Info";
 import { useForm } from "react-hook-form";
 import { IJoinProps } from "~/interfaces/IJoin";
+import { api } from "~/utils/api";
 
 const JoinForm: React.FC = () => {
   const {
@@ -10,8 +11,11 @@ const JoinForm: React.FC = () => {
     trigger,
     register,
   } = useForm<IJoinProps>();
+  
+  const mutation = api.users.userCreate.useMutation();
 
   const onSubmit = (data: IJoinProps) => {
+    mutation.mutate(data);
     console.log(data);
   };
 
