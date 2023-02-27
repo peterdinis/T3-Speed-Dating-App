@@ -1,15 +1,21 @@
 import { z } from "zod";
-
+import {prisma} from "../../db";
 import {
   createTRPCRouter,
   publicProcedure,
-  protectedProcedure,
 } from "~/server/api/trpc";
 
 export const userRouter = createTRPCRouter({
   userCreate: publicProcedure
     .input(z.object({ username: z.string().nullish(), contact: z.string().nullish() }))
-    .mutation((req) => {
-      console.log(req);
+    .mutation(async (ctx) => {
+       const newUser = await prisma.appUser.create({
+         data: {
+          contact: ctx.input.contact!,
+          username: ctx.input.username!
+         }
+       }) 
+
+       return newUser;
     }),
 });
