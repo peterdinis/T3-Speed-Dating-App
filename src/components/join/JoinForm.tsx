@@ -1,15 +1,16 @@
 import PersonIcon from "@mui/icons-material/Person";
 import InfoIcon from "@mui/icons-material/Info";
-import { InfoModal } from "../shared/InfoModal";
 import { useForm } from "react-hook-form";
 import { IJoinProps } from "~/interfaces/IJoin";
 
 const JoinForm: React.FC = () => {
   const {
-    register,
     handleSubmit,
+    formState: { errors },
+    trigger,
+    register,
   } = useForm<IJoinProps>();
-  
+
   const onSubmit = (data: IJoinProps) => {
     console.log(data);
   };
@@ -25,11 +26,17 @@ const JoinForm: React.FC = () => {
               type="text"
               id="username"
               {...register("username", {
-                required: true
+                required: true,
               })}
+              onKeyUp={() => {
+                trigger("username");
+              }}
               className="w-full bg-gray-100 py-2 pl-12 focus:outline-none md:py-4"
               placeholder="Username"
             />
+            {errors.username && errors.username.type === "required" && (
+              <p className="text-red-800">Username is required</p>
+            )}
           </div>
           <div className="mb-6 flex items-center text-lg md:mb-8">
             <InfoIcon className="absolute ml-3" />
@@ -38,25 +45,20 @@ const JoinForm: React.FC = () => {
               className="w-full bg-gray-100 py-2 pl-12 focus:outline-none md:py-4"
               placeholder="Your contact fb link ig link phone"
               {...register("contact", {
-                required: true
+                required: true,
               })}
+              onKeyUp={() => {
+                trigger("contact");
+              }}
             />
+
+            {errors.contact && errors.contact.type === "required" && (
+              <p className="text-red-800">Contact is required</p>
+            )}
           </div>
           <button className="w-full bg-gradient-to-b from-blue-700 to-gray-900 p-2 font-medium uppercase text-white md:p-4">
             Join
           </button>
-          <div className="mt-4">
-            {/* TODO: Fix bug in modal render */}
-            {/*   <InfoModal name="How this app work" header="Info about app">
-              <div className="mt-4">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-                  architecto recusandae ex consequuntur. A provident totam
-                  expedita quis aliquam cumque!
-                </p>
-              </div>
-            </InfoModal> */}
-          </div>
         </form>
       </div>
     </div>
