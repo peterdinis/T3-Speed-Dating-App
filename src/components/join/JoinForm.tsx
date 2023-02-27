@@ -1,5 +1,6 @@
-import PersonIcon from '@mui/icons-material/Person';
-import InfoIcon from '@mui/icons-material/Info';
+import PersonIcon from "@mui/icons-material/Person";
+import InfoIcon from "@mui/icons-material/Info";
+import { InfoModal } from "../shared/InfoModal";
 
 const JoinForm: React.FC = () => {
   return (
@@ -8,7 +9,7 @@ const JoinForm: React.FC = () => {
         <h2 className="text-center text-3xl">Speed Date App</h2>
         <form className="p-12 md:p-24">
           <div className="mb-6 flex items-center text-lg md:mb-8">
-          <PersonIcon className="absolute ml-3" />
+            <PersonIcon className="absolute ml-3" />
             <input
               type="text"
               id="username"
@@ -28,7 +29,16 @@ const JoinForm: React.FC = () => {
             Join
           </button>
           <div className="mt-4">
-            How this app work
+            {/* TODO: Fix bug in modal render */}
+          {/*   <InfoModal name="How this app work" header="Info about app">
+              <div className="mt-4">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. A
+                  architecto recusandae ex consequuntur. A provident totam
+                  expedita quis aliquam cumque!
+                </p>
+              </div>
+            </InfoModal> */}
           </div>
         </form>
       </div>

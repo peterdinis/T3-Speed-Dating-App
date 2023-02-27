@@ -2,18 +2,9 @@ import * as React from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useSpring, animated } from '@react-spring/web';
-
-interface FadeProps {
-  children: React.ReactElement;
-  in?: boolean;
-  onClick?: any;
-  onEnter?: (node: HTMLElement, isAppearing: boolean) => void;
-  onExited?: (node: HTMLElement, isAppearing: boolean) => void;
-  ownerState?: any;
-}
+import { FadeProps, IModalProps } from '~/interfaces/IModal';
 
 const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, ref) {
   const {
@@ -59,14 +50,14 @@ const style = {
   p: 4,
 };
 
-export default function SpringModal() {
+export const InfoModal: React.FC<IModalProps> = ({children, name, header}: IModalProps) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+    <>
+      <button className="font-bold text-lg" onClick={handleOpen}>{name}</button>
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
@@ -83,14 +74,12 @@ export default function SpringModal() {
         <Fade in={open}>
           <Box sx={style}>
             <Typography id="spring-modal-title" variant="h6" component="h2">
-              Text in a modal
+              {header}
             </Typography>
-            <Typography id="spring-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
+            {children}
           </Box>
         </Fade>
       </Modal>
-    </div>
+    </>
   );
 }
