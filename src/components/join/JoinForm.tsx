@@ -3,8 +3,10 @@ import InfoIcon from "@mui/icons-material/Info";
 import { useForm } from "react-hook-form";
 import { IJoinProps } from "~/interfaces/IJoin";
 import { api } from "~/utils/api";
+import {useRouter} from "next/router"
 
 const JoinForm: React.FC = () => {
+  const router = useRouter();
   const {
     handleSubmit,
     formState: { errors },
@@ -16,7 +18,7 @@ const JoinForm: React.FC = () => {
 
   const onSubmit = (data: IJoinProps) => {
     mutation.mutate(data);
-    console.log(data);
+    router.push("/wait");
   };
 
   return (

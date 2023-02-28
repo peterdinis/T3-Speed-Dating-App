@@ -1,8 +1,8 @@
+import Loader from "../shared/Loader"
+
 const WaitMessage: React.FC = () => {
     return (
-        <>
-        fffffffffff
-        </>
+        <Loader />
     )
 }
 
