@@ -4,6 +4,7 @@ import {
   createTRPCRouter,
   publicProcedure,
 } from "~/server/api/trpc";
+import { WAIT } from "../constants/status";
 
 export const userRouter = createTRPCRouter({
   userCreate: publicProcedure
@@ -18,4 +19,27 @@ export const userRouter = createTRPCRouter({
 
        return newUser;
     }),
+
+    findMatch: publicProcedure
+     .input(z.object({
+      userId: z.string().nullish()
+     })) 
+     .query(async (ctx) => {
+       const findMatchQuery = await prisma.appUser.findFirst({
+         where: {
+          status: WAIT,
+          NOT: {
+            id: {
+              id: ctx.input.userId
+            } as unknown as string
+          }
+         }
+       })
+
+       if(!findMatchQuery) {
+          throw new Error("No people found");
+       }
+
+       return findMatchQuery;
+     })
 });
