@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 import { IJoinProps } from "~/interfaces/IJoin";
 import { api } from "~/utils/api";
 import {useRouter} from "next/router"
+import {atom, useAtom} from "jotai";
+
+export const userAtom = atom("");
 
 const JoinForm: React.FC = () => {
   const router = useRouter();
