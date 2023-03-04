@@ -1,10 +1,9 @@
 import { NextPage } from "next";
+import NotFoundComponent from "~/components/shared/NotFoundComponent";
 
 const ErrorPage: NextPage = () => {
     return (
-        <>
-        tktktkt
-        </>
+        <NotFoundComponent />
     )
 }
 
