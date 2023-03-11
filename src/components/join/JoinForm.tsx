@@ -40,7 +40,7 @@ const JoinForm: React.FC = () => {
               onKeyUp={() => {
                 trigger("username");
               }}
-              className="w-full bg-gray-100 py-2 pl-12 focus:outline-none md:py-4"
+              className="rounded-lg w-full bg-gray-100 py-2 pl-12 focus:outline-none md:py-4"
               placeholder="Username"
             />
             {errors.username && errors.username.type === "required" && (
@@ -51,7 +51,7 @@ const JoinForm: React.FC = () => {
             <InfoIcon className="absolute ml-3" />
             <input
               type="text"
-              className="w-full bg-gray-100 py-2 pl-12 focus:outline-none md:py-4"
+              className="rounded-lg w-full bg-gray-100 py-2 pl-12 focus:outline-none md:py-4"
               placeholder="Your contact fb link ig link phone"
               {...register("contact", {
                 required: true,
